@@ -13,44 +13,44 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
-
 import pytest
 from sdv.test.inttesthelper import IntTestHelper
 from sdv.test.mqtt_util import MqttClient
+import can
+import time
 
 # GET_SPEED_REQUEST_TOPIC = "sampleapp/getSpeed"
 # GET_SPEED_RESPONSE_TOPIC = "sampleapp/getSpeed/response"
 
-
 @pytest.mark.asyncio
-async def test_get_current_speed():
-    mqtt_client = MqttClient()
-    inttesthelper = IntTestHelper()
-    print(f"{mqtt_client} can be used when your app compiles succesfully!")
-    print(f"{inttesthelper} can be used when your app compiles succesfully!")
+async def test_can_bus():
+    bus1 = can.interface.Bus('test', bustype='virtual')
+    bus2 = can.interface.Bus('test', bustype='virtual')
 
-    # When your app compiles succesfully use the inttesthelper to get viable responses
-    response = "{}"
-    # response = await inttesthelper.set_float_datapoint(
-    #     name="Vehicle.Speed", value=0
-    # )
+    msg1 = can.Message(arbitration_id=0x3B2, data=[1])
+    bus1.send(msg1)
+    msg2 = bus2.recv()
 
-    # assert len(response.errors) == 0
+    #assert msg1 == msg2
+    assert msg1.arbitration_id != msg2.arbitration_id
+    assert msg1.data == msg2.data
+    assert msg1.timestamp != msg2.timestamp
+    
+@pytest.mark.asyncio
+async def test_socket_can_bus():
+    bustype = 'virtual'
+    channel = 'vcan0' # can0 on non-virtual physical bus
 
-    # response = mqtt_client.publish_and_wait_for_response(
-    #     request_topic=GET_SPEED_REQUEST_TOPIC,
-    #     response_topic=GET_SPEED_RESPONSE_TOPIC,
-    #     payload={},
-    # )
+    bus = can.interface.Bus(channel=channel, bustype=bustype, bitrate=500000)
+    for i in range(6000):
+        #driver door open, key in run, engine off
+        msg = can.Message(
+            is_extended_id=False, 
+            arbitration_id=0x3B2, 
+            data=[0x77, 0x80, 0x06, 0x80, 0xD9, 0x06, 0x00, 0x00])
+        print(msg)
+        bus.send(msg)
+        time.sleep(0.01) # send every 10 ms
+        
 
-    body = json.loads(response)
-    # add expected message to get it assert
-    expected_message = "Current Speed = 0.0"
 
-    print(f"Received response: {body}")
-    print(f"Expected message: {expected_message}")
-
-    # Uncomment to test the behaviour of the SampleApp as provided by
-    #     the template repository:
-    # assert body["result"]["status"] == 0
-    # assert body["result"]["message"] == expected_message
