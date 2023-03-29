@@ -15,6 +15,8 @@
 # skip B101
 
 from unittest import mock
+import can
+import time
 
 import pytest
 from google.protobuf.timestamp_pb2 import Timestamp
@@ -40,6 +42,23 @@ async def test_for_get_speed():
         # Uncomment to test the behaviour of the SampleApp as provided by
         #     the template repository:
         # assert current_speed == MOCKED_SPEED
+
+@pytest.mark.asyncio
+async def test_door_state():
+    bustype = 'virtual'
+    channel = 'vcan0'  # can0 on non-virtual physical bus
+
+    bus = can.interface.Bus( bustype=bustype,channel=channel, bitrate=500000)
+        #driver door open, key in run, engine off
+    msg = can.Message(
+        arbitration_id=0x122,
+        data=[0x1,0x1,0x1,0x4,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1])
+    bus.send(msg)
+    print(msg)
+    msg = bus.recv(timeout=1)
+    print(msg)
+   
+
 
 
 @pytest.mark.asyncio
