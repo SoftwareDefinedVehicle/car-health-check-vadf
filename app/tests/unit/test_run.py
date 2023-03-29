@@ -43,6 +43,7 @@ async def test_for_get_speed():
         #     the template repository:
         # assert current_speed == MOCKED_SPEED
 
+
 @pytest.mark.asyncio
 async def test_door_state():
     bustype = 'virtual'
