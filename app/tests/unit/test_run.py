@@ -50,14 +50,15 @@ async def test_door_state():
     channel = 'vcan0'  # can0 on non-virtual physical bus
 
     bus = can.interface.Bus( bustype=bustype,channel=channel, bitrate=500000)
+    bus2 = can.interface.Bus( bustype=bustype,channel=channel, bitrate=500000)
         #driver door open, key in run, engine off
     msg = can.Message(
         arbitration_id=0x122,
         data=[0x1,0x1,0x1,0x4,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1])
     bus.send(msg)
     print(msg)
-    msg = bus.recv(timeout=1)
-    print(msg)
+    msg2 = bus2.recv(timeout=1)
+    print(msg2)
    
 
 
