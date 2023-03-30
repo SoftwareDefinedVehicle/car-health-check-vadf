@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright (c) 2022 Robert Bosch GmbH and Microsoft Corporation
 #
 # This program and the accompanying materials are made available under the
@@ -12,20 +13,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-apiVersion: dapr.io/v1alpha1
-kind: Component
-metadata:
-  name: mqtt-pubsub
-  namespace: default
-spec:
-  type: pubsub.mqtt
-  version: v1
-  metadata:
-  - name: url
-    value: "mqtt://localhost:1883"
-  - name: qos
-    value: 1
-  - name: retain
-    value: "false"
-  - name: cleanSession
-    value: "false"
+if [[ "$#" -eq 1 ]]; then
+    tput setaf 1; echo "ERROR: To execute script, use VSCODE Tasks: [CTRL+SHIFT+P -> Tasks: Run Tasks -> $1]."
+    read -p "Press <Enter> to close this window"
+    exit 1
+fi
