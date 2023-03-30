@@ -135,9 +135,10 @@
 			}
 		},
 		{
-			"label": "run-feedercan",
+			"label": "Local - FeederCan",
+			"detail": "Runs FeederCan as background task.",
 			"type": "shell",
-			"command": "./.vscode/scripts/run-feedercan.sh ${input:middleware}",
+			"command": "velocitas exec runtime-local run-feedercan",
 			"group": "none",
 			"presentation": {
 				"reveal": "always",
@@ -168,7 +169,7 @@
 				"Local - Mosquitto",
 				"Local - VehicleDataBroker",
 				"Local - VehicleServices",
-				"run-feedercan"
+				"Local - FeederCan"
 			],
 			"dependsOrder": "sequence"
 		},
@@ -334,15 +335,6 @@
 			"type": "pickString",
 			"options": [
 				"seat-adjuster"
-			],
-		},
-		{
-			"description": "Options for selecting the type middleware",
-			"id": "middleware",
-			"type": "pickString",
-			"options": [
-				"DAPR",
-				"NATIVE"
 			],
 		}
 	]
