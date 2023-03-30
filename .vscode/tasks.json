@@ -135,6 +135,16 @@
 			}
 		},
 		{
+			"label": "Local - Ensure Feeder can file replaced",
+			"detail": "ensure files are replaced.",
+			"type": "shell",
+			"command": "cp app/data/* /home/vscode/.velocitas/packages/devenv-runtime-local/v1.0.5/src/data",
+			"group": "none",
+			"presentation": {
+				"close": true
+			}
+		},
+		{
 			"label": "Local - FeederCan",
 			"detail": "Runs FeederCan as background task.",
 			"type": "shell",
@@ -167,6 +177,7 @@
 			"dependsOn": [
 				"Local - Ensure Dapr",
 				"Local - Mosquitto",
+				"Local - Ensure Feeder can file replaced",
 				"Local - VehicleDataBroker",
 				"Local - VehicleServices",
 				"Local - FeederCan"
