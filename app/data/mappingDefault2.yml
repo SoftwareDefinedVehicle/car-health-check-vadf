@@ -13,7 +13,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 # Mapping Trunk Status
-UI_a003_TrunkOpen:
+TailgateState:
   vss: # taken from https://github.com/COVESA/vehicle_signal_specification/blob/master/spec/Body/Body.vspec
     datatype: float
     type: sensor
@@ -23,10 +23,14 @@ UI_a003_TrunkOpen:
     datatype: 1 # BOOL number taken from types_pb2.py
     changetype: 2 # ON_CHANGE number taken from types_pb2.py
   targets:
-    Vehicle.Body.Trunk.Rear.IsOpen: {}
+    Vehicle.Body.Trunk.Rear.IsOpen: 
+      transform:
+        fullmapping:
+          Open: "true"
+          Close: "false"
 
 # Mapping Hood Status
-UI_a004_FrunkOpen:
+BonnetState:
   vss: # taken from https://github.com/COVESA/vehicle_signal_specification/blob/master/spec/Body/Body.vspec
     datatype: float
     type: sensor
@@ -36,10 +40,14 @@ UI_a004_FrunkOpen:
     datatype: 1 # BOOL number taken from types_pb2.py
     changetype: 2 # ON_CHANGE number taken from types_pb2.py
   targets:
-    Vehicle.Body.Hood.IsOpen: {}
+    Vehicle.Body.Hood.IsOpen:
+      transform:
+        fullmapping:
+          Open: "true"
+          Close: "false"
 
 # Mapping Rear left door
-VCLEFT_rearDoorState:
+DoorStateRearLH:
   vss: # taken from https://github.com/COVESA/vehicle_signal_specification/blob/master/spec/Cabin/SingleDoor.vspec
     datatype: boolean
     type: actuator
@@ -53,12 +61,11 @@ VCLEFT_rearDoorState:
     Vehicle.Cabin.Door.Row2.Left.IsOpen:
       transform:
         fullmapping:
-          DOOR_STATE_CLOSED: "false"
-          DOOR_STATE_OPEN_OR_AJAR: "true"
-          DOOR_STATE_RELEASING_LATCH: "true"
+          Open: "true"
+          Close: "false"
 
 # Mapping Rear Right door
-VCRIGHT_rearDoorState:
+DoorStateRearRH:
   vss: # taken from https://github.com/COVESA/vehicle_signal_specification/blob/master/spec/Cabin/SingleDoor.vspec
     datatype: boolean
     type: actuator
@@ -72,6 +79,5 @@ VCRIGHT_rearDoorState:
     Vehicle.Cabin.Door.Row2.Right.IsOpen:
       transform:
         fullmapping:
-          DOOR_STATE_CLOSED: "false"
-          DOOR_STATE_OPEN_OR_AJAR: "true"
-          DOOR_STATE_RELEASING_LATCH: "true"
+          Open: "true"
+          Close: "false"
