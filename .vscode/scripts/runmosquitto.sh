@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright (c) 2022 Robert Bosch GmbH and Microsoft Corporation
 #
 # This program and the accompanying materials are made available under the
@@ -12,20 +13,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-apiVersion: dapr.io/v1alpha1
-kind: Component
-metadata:
-  name: mqtt-pubsub
-  namespace: default
-spec:
-  type: pubsub.mqtt
-  version: v1
-  metadata:
-  - name: url
-    value: "mqtt://localhost:1883"
-  - name: qos
-    value: 1
-  - name: retain
-    value: "false"
-  - name: cleanSession
-    value: "false"
+echo "#######################################################"
+echo "### Running MQTT Broker                             ###"
+echo "#######################################################"
+
+#Terminate existing running services
+
+docker run -p 1883:1883 -p 9001:9001 -v /workspaces/car-health-check-vadf/app/data/mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto:2.0.14

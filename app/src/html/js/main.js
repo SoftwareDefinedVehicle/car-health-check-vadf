@@ -34,9 +34,9 @@ export default {
             var r = (Math.round(Math.random() * 255)).toString(16);
             var g = (Math.round(Math.random() * 255)).toString(16);
             var b = (Math.round(Math.random() * 255)).toString(16);
-            this.client = new Messaging.Client("broker.mqttdashboard.com", Number(8000), r + g + b);
+            this.client = new Messaging.Client("localhost", Number(9001), r + g + b);
             console.log("Connection attempeted with client id: " + r + g + b);
-            this.client.onConnect = this.onConnect
+            //this.client.onConnect = this.onConnect
             this.client.onConnectionLost = this.onConnectionLost
             this.client.onMessageArrived = this.onMessageArrived
 

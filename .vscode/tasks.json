@@ -41,7 +41,7 @@
 			"label": "Local - Mosquitto",
 			"detail": "Runs Mosquitto MQTT Broker in a container (with docker run) with exposed port 1883.",
 			"type": "shell",
-			"command": "velocitas exec runtime-local run-mosquitto",
+			"command": "./.vscode/scripts/runmosquitto.sh",
 			"group": "none",
 			"presentation": {
 				"reveal": "always",
