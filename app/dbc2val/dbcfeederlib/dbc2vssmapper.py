@@ -146,7 +146,7 @@ class VSSMapping:
                 # It is supposed that "extract_verify_transform" already have checked that
                 # we have a valid transform, so we shall never end up here
                 log.error("Unsupported transform")
-
+        log.info(f"Value {self.vss_name} found for raw value {value}")
         if vss_value is None:
             log.info(f"No mapping to VSS {self.vss_name} found for raw value {value},"
                      f"returning None to indicate that it shall be ignored!")

@@ -320,8 +320,19 @@
               "IsOpen": {
                 "datatype": "boolean",
                 "dbc": {
-                  "interval_ms": 1000,
-                  "signal": "BonnetState"
+                  "signal": "BonnetState",
+                  "transform": {
+                    "mapping": [
+                      {
+                        "from": "Open",
+                        "to": true
+                      },
+                      {
+                        "from": "Close",
+                        "to": false
+                      }
+                    ]
+                  }
                 },
                 "description": "Hood open or closed. True = Open. False = Closed.",
                 "type": "actuator"
@@ -695,10 +706,6 @@
                   "IsOpen": {
                     "datatype": "boolean",
                     "description": "Trunk open or closed. True = Open. False = Closed.",
-                    "dbc": {
-                      "interval_ms": 1000,
-                      "signal": "TailgateState"
-                    },
                     "type": "actuator"
                   }
                 },
@@ -715,6 +722,21 @@
                   },
                   "IsOpen": {
                     "datatype": "boolean",
+                    "dbc": {
+                      "signal": "TailgateState",
+                      "transform": {
+                        "mapping": [
+                          {
+                            "from": "Open",
+                            "to": true
+                          },
+                          {
+                            "from": "Close",
+                            "to": false
+                          }
+                        ]
+                      }
+                    },
                     "description": "Trunk open or closed. True = Open. False = Closed.",
                     "type": "actuator"
                   }
@@ -1231,8 +1253,19 @@
                         "datatype": "boolean",
                         "description": "Is door open or closed",
                         "dbc": {
-                          "interval_ms": 1000,
-                          "signal": "DoorStateRearLH"
+                          "signal": "DoorStateRearLH",
+                          "transform": {
+                            "mapping": [
+                              {
+                                "from": "open",
+                                "to": true
+                              },
+                              {
+                                "from": "close",
+                                "to": false
+                              }
+                            ]
+                          }
                         },
                         "type": "actuator"
                       },
@@ -1317,8 +1350,19 @@
                       "IsOpen": {
                         "datatype": "boolean",
                         "dbc": {
-                          "interval_ms": 1000,
-                          "signal": "DoorStateRearRH"
+                          "signal": "DoorStateRearRH",
+                          "transform": {
+                            "mapping": [
+                              {
+                                "from": "Open",
+                                "to": true
+                              },
+                              {
+                                "from": "Close",
+                                "to": false
+                              }
+                            ]
+                          }
                         },
                         "description": "Is door open or closed",
                         "type": "actuator"

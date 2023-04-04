@@ -176,6 +176,7 @@
 			"detail": "Runs all components of the VehicleApp runtime.",
 			"dependsOn": [
 				"Local - Ensure Dapr",
+				"Local - Mosquitto",
 				"Local - Ensure Feeder can file replaced",
 				"Local - Run Broker Image",
 				"Local - Run DBC2VAL Can Feeder",
