@@ -176,13 +176,66 @@
 			"detail": "Runs all components of the VehicleApp runtime.",
 			"dependsOn": [
 				"Local - Ensure Dapr",
-				"Local - Mosquitto",
 				"Local - Ensure Feeder can file replaced",
+				"Local - Run Broker Image",
+				"Local - Run DBC2VAL Can Feeder",
 				"Local - VehicleDataBroker",
-				"Local - VehicleServices",
-				"Local - FeederCan"
 			],
 			"dependsOrder": "sequence"
+		},
+		{
+			"label": "Local - Run Broker Image",
+			"detail": "Run broker image",
+			"type": "shell",
+			"command": "./.vscode/scripts/runbroker.sh",
+			"group": "none",
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			},
+			"isBackground": true,
+			"problemMatcher": {
+				"pattern": [
+					{
+						"regexp": ".",
+						"file": 1,
+						"location": 2,
+						"message": 3
+					}
+				],
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": "^You're up and running! Dapr logs will appear here.",
+					"endsPattern": "."
+				}
+			}
+		},
+		{
+			"label": "Local - Run DBC2VAL Can Feeder",
+			"detail": "Run Feeder can",
+			"type": "shell",
+			"command": "./.vscode/scripts/runfeedercan.sh",
+			"group": "none",
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			},
+			"isBackground": true,
+			"problemMatcher": {
+				"pattern": [
+					{
+						"regexp": ".",
+						"file": 1,
+						"location": 2,
+						"message": 3
+					}
+				],
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": "^You're up and running! Dapr logs will appear here.",
+					"endsPattern": "."
+				}
+			}
 		},
 		{
 			"label": "Local - VehicleApp (Dapr run)",

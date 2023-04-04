@@ -1,0 +1,113 @@
+{
+    "Vehicle": {
+        "children": {
+            "Body": {
+                "children": {
+                    "Hood": {
+                        "children": {
+                            "IsOpen": {
+                                "datatype": "boolean",
+                                "dbc": {
+                                    "interval_ms": 1000,
+                                    "signal": "BonnetState",
+                                    "transform": {
+                                        "mapping": [
+                                            {
+                                                "from": "Open",
+                                                "to": true
+                                            },
+                                            {
+                                                "from": "Close",
+                                                "to": false
+                                            }
+                                        ]
+                                    }
+                                },
+                                "description": "Hood open or closed. True = Open. False = Closed.",
+                                "type": "actuator"
+                            }
+                        },
+                        "comment": "The hood is the hinged cover over the engine compartment of a motor vehicles. Depending on vehicle, it can be either in the front or back of the vehicle. Luggage compartments are in VSS called trunks, even if they are located at the front of the vehicle.",
+                        "description": "Hood status.",
+                        "type": "branch"
+                    },
+                    "Trunk": {
+                        "children": {
+                            "Rear": {
+                                "children": {
+                                    "IsOpen": {
+                                        "datatype": "boolean",
+                                        "dbc": {
+                                            "interval_ms": 1000,
+                                            "signal": "TailgateState",
+                                            "transform": {
+                                                "mapping": [
+                                                    {
+                                                        "from": "Open",
+                                                        "to": true
+                                                    },
+                                                    {
+                                                        "from": "Close",
+                                                        "to": false
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "description": "Trunk open or closed. True = Open. False = Closed.",
+                                        "type": "actuator"
+                                    }
+                                },
+                                "comment": "A trunk is a luggage compartment in a vehicle. Depending on vehicle, it can be either in the front or back of the vehicle. Some vehicles may have trunks both at the front and at the rear of the vehicle.",
+                                "description": "Trunk status.",
+                                "type": "branch"
+                            }
+                        },
+                        "comment": "A trunk is a luggage compartment in a vehicle. Depending on vehicle, it can be either in the front or back of the vehicle. Some vehicles may have trunks both at the front and at the rear of the vehicle.",
+                        "description": "Trunk status.",
+                        "type": "branch"
+                    }
+                },
+                "description": "All body components.",
+                "type": "branch"
+            },
+            "Cabin": {
+                "children": {
+                    "Door": {
+                        "children": {
+                            "Row2": {
+                                "children": {
+                                    "Left": {
+                                        "children": {
+                                            "IsOpen": {
+                                                "datatype": "boolean",
+                                                "description": "Is door open or closed",
+                                                "type": "actuator"
+                                            }
+                                        },
+                                        "description": "All doors, including windows and switches.",
+                                        "type": "branch"
+                                    },
+                                    "Right": {
+                                        "children": {
+                                            "IsOpen": {
+                                                "datatype": "boolean",
+                                                "description": "Is door open or closed",
+                                                "type": "actuator"
+                                            }
+                                        },
+                                        "description": "All doors, including windows and switches.",
+                                        "type": "branch"
+                                    }
+                                },
+                                "description": "All doors, including windows and switches.",
+                                "type": "branch"
+                            }
+                        },
+                        "description": "All doors, including windows and switches.",
+                        "type": "branch"
+                    }
+                }
+            }
+        }
+    }
+}
