@@ -15,3 +15,15 @@ cansend vcan0 3B2#6F860C000C0C1803
 
 ### Only Bonnet Open ###
 cansend vcan0 3B2#6F060C000C0C5803
+
+### Only Rear RH Door Open ###
+cansend vcan0 3B2#6F070C000C0C1803
+
+### Only Rear RH Door & LH Door Open ###
+cansend vcan0 3B2#6F0F0C000C0C1803
+
+### Only Tail Gate & Rear RH Door & LH Door  Open ###
+cansend vcan0 3B2#6F8F0C000C0C1803
+
+### Only Tail Gate & Rear RH Door & LH Door & Bonnet Open ###
+cansend vcan0 3B2#6F8F0C000C0C5803
