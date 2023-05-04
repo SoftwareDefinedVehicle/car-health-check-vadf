@@ -29,7 +29,7 @@
                 {
                     "name": "feedercan",
                     "image": "ghcr.io/eclipse/kuksa.val.feeders/dbc2val",
-                    "version": "v0.1.1"
+                    "version": "main"
                 }
             ],
             "python": {
